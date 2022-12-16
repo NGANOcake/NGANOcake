@@ -9,8 +9,69 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+ <body>
+  <header class="navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand p-2" href="/">LOGO</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  　　　　　　<span class="navbar-toggler-icon"></span>
+　　　　　</button>
+　　　　　<div class="navbar-collapse" id="navbarNavDropdown">
+ 　　　　　　　 <ul class="navbar-nav ml-auto">
+      <% if user_signed_in? %>
+      <li class="nav-link text-light">
+        <i></i>
+        <%= link_to "商品一覧", admins_items_index_path %>
+      </li>
+      <li class="nav-link text-light">
+        <i></i>
+        <%= link_to "会員一覧", about_path %>
+      </li>
+      <li class="nav-link text-light">
+        <i></i>
+        <%= link_to "注文一覧", about_path %>
+      </li>
+      <li class="nav-link text-light">
+        <i></i>
+        <%= link_to "ジャンル一覧", about_path %>
+      </li>
+      <li class="na-link text-light">
+        <i></i>
+        <%= link_to "ログアウト", about_path %>
+      </li>
+      <% else %>
+      <li class="nav-link navbar-light">
+       <i></i>
+        <%= link_to "About", about_path %>
+      </li>
+      <li class="nav-link text-light">
+        <i></i>
+        <%= link_to "商品一覧", about_path %>
+      </li>
+      <li class="nav-link text-light">
+        <i></i>
+        <%= link_to "新規登録", about_path %>
+      </li>
+      <li class="nav-link text-light">
+        <i></i>
+        <%= link_to "ログイン", new_admin_session_path %>
+      </li>
+      <% end %>
+      </ul>
+      </div>
+      </div>
+      </nav>
+    </header>
 
-  <body>
     <%= yield %>
+
+   <footer class="container">
+    <div class="row">
+     <div class="mx-auto">
+       <p>CopyRight NAGANOCake.inc</p>
+     </div>
+    </div>
+    </footer>
   </body>
 </html>
