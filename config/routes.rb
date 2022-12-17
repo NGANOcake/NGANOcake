@@ -1,32 +1,23 @@
 Rails.application.routes.draw do
-   devise_for :admins, controllers: {
-        sessions: 'admins/sessions',
-        passwords: 'admins/passwords',
-        registrations: 'admins/registrations'
+   devise_for :admins,skip: [:registrations, :passwords] , controllers: {
+        sessions: 'admins/sessions'
       }
 
-  devise_for :users,  controllers: {
-        sessions: 'users/sessions',
-        passwords: 'users/passwords',
-        registrations: 'users/registrations'
+  devise_for :users,skip: [:passwords],  controllers: {
+        passwords: 'publics/passwords',
+        registrations: 'publics/registrations'
       }
   namespace :admins do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
+    resources :customers, :only => [:index,:show,:edit,:update]
   end
   namespace :admins do
-    get 'genres/index'
-    get 'genres/edit'
+    resources :genres, :only => [:index,:edit,:update]
   end
   namespace :admins do
-    get 'items/index'
-    get 'items/new'
-    get 'items/show'
-    get 'items/edit'
+    resources :items, :only => [:index,:new,:create,:show,:edit,:update]
   end
   namespace :admins do
-    get 'homes/top'
+    resources :homes, :only => [:top,:about]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -34,5 +25,4 @@ Rails.application.routes.draw do
   root to: 'admins/homes#top'
 
   get '/admins/homes/top' => 'admins/homes#top', as: 'about'
-
 end
