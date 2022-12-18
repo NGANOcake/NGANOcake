@@ -1,5 +1,6 @@
 class Admins::ItemsController < ApplicationController
   def index
+    @items = Item.all
   end
 
   def new
@@ -11,7 +12,7 @@ class Admins::ItemsController < ApplicationController
     if @item.save
       redirect_to  admins_item_path(@item.id)
     else
-      render :index
+      render :new
     end
   end
 
