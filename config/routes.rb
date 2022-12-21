@@ -7,8 +7,11 @@ Rails.application.routes.draw do
         passwords: 'publics/passwords',
         registrations: 'publics/registrations'
       }
+
+  root to: 'admins/homes#top'
+
   namespace :admins do
-    resources :customers, :only => [:index,:show,:edit,:update]
+    resources :users, :only => [:index,:show,:edit,:update]
   end
   namespace :admins do
     resources :genres, :only => [:index,:edit,:update]
@@ -21,8 +24,6 @@ Rails.application.routes.draw do
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
-  root to: 'admins/homes#top'
 
   get '/admins/homes/top' => 'admins/homes#top', as: 'about'
 end
