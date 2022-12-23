@@ -37,8 +37,7 @@
     </tr>
   </table>
   <div class="btn btn-dark"><%= link_to "編集する", edit_admins_user_path(@user.id) %></div>
-  |
-  <div class="btn btn-dark"><%= link_to "注文履歴一覧を見る", admins_users_path %></div>
+  <div class="btn btn-dark"><%= link_to "注文履歴一覧を見る", admins_order_path(@user.id) %></div>
   </div>
   </div>
 </main>
