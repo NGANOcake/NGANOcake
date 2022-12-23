@@ -1,19 +1,19 @@
 <main class="container">
   <div class="row">
   <div width="90%", class="mx-auto">
-  <h1>注文詳細画面</h1>
+  <h1 class="bg-light">注文詳細画面</h1>
   <table>
     <tr>
       <th>購入者</th>
-      <td></td>
+      <td><%= link_to @user.first_name, admins_user_path(@user.id) %><%= @user.last_name %></td>
     </tr>
     <tr>
       <th>注文日</th>
-      <td></td>
+      <td><%= @order.created_at.strftime(' %Y/%m/%d ') %></td>
     </tr>
     <tr>
       <th>配送先</th>
-      <td></td>
+      <td><%= @user.address %></td>
     </tr>
     <tr>
       <th>支払方法</th>
@@ -27,36 +27,35 @@
   <div class="container">
   <div class="row">
   <table class="col-md-7">
-    <% @orders.each do |order| %>
-    <tr>
+    <tr class="bg-light">
       <th>商品名</th>
       <th>単価（税込）</th>
       <th>数量</th>
       <th>小計</th>
       <th>制作ステータス</th>
     </tr>
-    <% @orders.each do |order| %>
+    <% @cart_items.each do |order| %>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td><%= cart_item.item.name %></td>
+      <td><%= cart_item.item.price %></td>
+      <td><%= cart_item.amount %></td>
+      <td><%= cart_item.total_payment %></td>
+      <td>ステータス</td>
     </tr>
     <% end %>
   </table>
   <table class="col-md-5">
     <tr>
       <th>商品合計</th>
-      <td></td>
+      <td>合計</td>
     </tr>
     <tr>
       <th>送料</th>
-      <td></td>
+      <td><%= @order.shipping_cost %></td>
     </tr>
     <tr>
       <th>請求金額合計</th>
-      <th>￥S0000</th>
+      <th><%= @order.order.total_payment %></th>
     </tr>
   </table>
   </div>

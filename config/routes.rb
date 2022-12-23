@@ -8,8 +8,6 @@ Rails.application.routes.draw do
         registrations: 'publics/registrations'
       }
 
-  root to: 'admins/homes#top'
-
   namespace :admins do
     resources :users, :only => [:index,:show,:edit,:update]
   end
@@ -32,4 +30,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   get '/admins/homes/top' => 'admins/homes#top', as: 'about'
+
+  root to: 'admins/homes#top'
 end

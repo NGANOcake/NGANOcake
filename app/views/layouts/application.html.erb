@@ -20,28 +20,38 @@
 　　　　　<div class="navbar-collapse" id="navbarNavDropdown">
  　　　　　　　 <ul class="navbar-nav ml-auto">
   <% if admin_signed_in? %>
-      <li class="nav-link text-light">
-        <i></i>
+      <li class="nav-link -light">
         <%= link_to "商品一覧", admins_items_path %>
       </li>
       <li class="nav-link text-light">
-        <i></i>
         <%= link_to "会員一覧", admins_users_path %>
       </li>
       <li class="nav-link text-light">
-        <i></i>
         <%= link_to "注文一覧", admins_orders_path %>
       </li>
       <li class="nav-link text-light">
-        <i></i>
         <%= link_to "ジャンル一覧", about_path %>
-      </li>
-      <li class="na-link text-light">
-        <i></i>
+      <li class="nav-link text-light">
         <%= link_to "管理者ログアウト",  destroy_admin_session_path, method: :delete %>
       </li>
+  <% elsif user_signed_in? %>
+      <li class="nav-link text-light">
+        <%= link_to "商品一覧", admins_items_path %>
+      </li>
+      <li class="nav-link text-light">
+        <%= link_to "会員一覧", admins_users_path %>
+      </li>
+      <li class="nav-link text-light">
+        <%= link_to "注文一覧", admins_orders_path %>
+      </li>
+      <li class="nav-link text-light">
+        <%= link_to "ジャンル一覧", about_path %>
+      <li class="nav-link text-light">
+        <i></i>
+        <%= link_to "ユーザーログアウト",  destroy_user_session_path, method: :delete %>
+      </li>
   <% else %>
-      <li class="nav-link navbar-light">
+      <li class="nav-link link-light">
        <i></i>
         <%= link_to "About", about_path %>
       </li>
@@ -57,10 +67,6 @@
         <i></i>
         <%= link_to "ログイン", new_user_session_path %>
       </li>
-      <li class="na-link text-light">
-        <i></i>
-        <%= link_to "ユーザーログアウト",  destroy_user_session_path, method: :delete %>
-      </li>
   <% end %>
       </ul>
       </div>
@@ -75,9 +81,6 @@
      <div class="mx-auto">
        <p>CopyRight NAGANOCake.inc</p>
      </div>
-
-     <div　class="btn btn-dark"><%= link_to "管理者ログイン", new_admin_session_path %></div>
-
     </div>
     </footer>
   </body>

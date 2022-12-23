@@ -1,10 +1,9 @@
 <main>
-<h1>商品一覧</h1>
-<%= link_to "商品新規登録画面へ", new_admins_item_path %>
+<h1 class="bg-light">商品一覧</h1>
 <div class="continer">
   <div class="row">
 <table width="90%", class="mx-auto">
-<tr>
+<tr class="bg-light">
   <th >商品ID</th>
   <th >商品名</th>
   <th >税抜価格</th>
@@ -21,6 +20,7 @@
 </tr>
 <% end %>
 </table>
+<p class="text-right"><%= link_to "商品新規登録画面へ", new_admins_item_path %></p><br>
 </div>
 </div>
 </main>
