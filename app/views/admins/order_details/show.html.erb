@@ -1,0 +1,64 @@
+<main class="container">
+  <div class="row">
+  <div width="90%", class="mx-auto">
+  <h1>注文詳細画面</h1>
+  <table>
+    <tr>
+      <th>購入者</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>注文日</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>配送先</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>支払方法</th>
+      <td>銀行振込</td>
+    </tr>
+    <tr>
+      <th>注文ステータス</th>
+      <td>ステータス</td>
+    </tr>
+  </table>
+  <div class="container">
+  <div class="row">
+  <table class="col-md-7">
+    <% @orders.each do |order| %>
+    <tr>
+      <th>商品名</th>
+      <th>単価（税込）</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>制作ステータス</th>
+    </tr>
+    <% @orders.each do |order| %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <% end %>
+  </table>
+  <table class="col-md-5">
+    <tr>
+      <th>商品合計</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>送料</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>請求金額合計</th>
+      <th>￥S0000</th>
+    </tr>
+  </table>
+  </div>
+  </div>
+</main>

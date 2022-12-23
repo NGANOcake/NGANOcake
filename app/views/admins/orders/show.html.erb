@@ -10,7 +10,7 @@
 </tr>
 <tr>
 <% @orders.each do |order| %>
-<td><%= link_to order.created_at.strftime(' %Y/%m/%d '), admins_orders_path %></td>
+<td><%= link_to order.created_at.strftime(' %Y/%m/%d '),  admins_order_detail_path(order.id) %></td>
 <td><%= order.order_detail.amount %></td>
 <td>ステータス</td>
 </tr>

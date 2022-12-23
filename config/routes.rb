@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :orders, :only => [:index, :show]
   end
+  namespace :admins do
+    resources :order_details, :only => [:show]
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
