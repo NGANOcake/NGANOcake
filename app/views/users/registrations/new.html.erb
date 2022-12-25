@@ -5,34 +5,63 @@
 <main class="cotainer">
   <div class="row">
   <div class="mx-auto">
+    <table>
   <div class="field">
-  <%= f.label "氏名" %>
-  <%= f.text_field :first_name %>|<%= f.text_field :last_name %>
-</div>
-
+  <tr>
+    <th><%= f.label "名前" %></th>
+    <td>（姓）<%= f.text_field :first_name %>（名）<%= f.text_field :last_name %></td>
+  </tr>
+  <tr>
   <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <th><%= f.label "フリガナ" %></th>
+  <td>（セイ）<%= f.text_field :first_name_kana %>（メイ）<%= f.text_field :last_name_kana %></td>
   </div>
-
+  </tr>
+  <tr>
   <div class="field">
-    <%= f.label :password %>
+    <th><%= f.label "メールアドレス" %></th>
+    <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+  </div>
+  </tr>
+  <tr>
+    <div class="field">
+      <th><%= f.label "郵便番号" %></th>
+      <td><%= f.text_field :postal_code %></td>
+    </div>
+  </tr>
+  <tr>
+    <div class="field">
+      <th><%= f.label "" %></th>
+      <td><%= f.text_field :address %></td>
+    </div>
+  </tr>
+  <tr>
+    <div class="">
+      <th><%= f.label "" %></th>
+      <td><%= f.text_field :telephone_number %></td>
+    </div>
+  </tr>
+  <tr>
+  <div class="field">
+    <th><%= f.label "パスワード（６文字以上）" %></th>
+    <td>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %>
     <%= f.password_field :password, autocomplete: "new-password" %>
+    </td>
   </div>
-
+  </tr>
   <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <th><%= f.label "パスワード（確認用）" %></th>
+    <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "新規登録" %>
   </div>
 <% end %>
-
+</table>
 <%= render "users/shared/links" %>
 </div>
 </div>

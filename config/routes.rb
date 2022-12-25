@@ -30,7 +30,9 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :order_details, :only => [:show]
   end
-
+namespace :publics do
+    resources :homes, :only => [:top,:about]
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   get '/admins/homes/top' => 'admins/homes#top', as: 'about'
