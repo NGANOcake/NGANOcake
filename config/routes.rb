@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   namespace :publics do
+    get 'items/index'
+    get 'items/show'
+  end
+  namespace :publics do
+    get '/users/my_page' => 'users#show', as: 'my_page'
+    get 'users/edit'
+    get '/users/confirm' => 'users#confirm'
+  end
+  namespace :publics do
     get 'homes/top'
     get 'homes/about'
   end

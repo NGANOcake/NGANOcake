@@ -1,0 +1,44 @@
+<main class="contianer">
+  <div class="row">
+    <div class="mx-auto">
+      <h1>マイページ</h1>
+      <h3>登録情報　<%= link_to "編集する", publics_users_edit_path %></h3>
+      <table>
+        <tr>
+          <th>氏名</th>
+          <td><%= @user.first_name %> <%= @user.last_name %></td>
+        </tr>
+        <tr>
+          <th>かな</th>
+          <td><%= @user.first_name_kana %> <%= @user.last_name_kana %></td>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <td><%= @user.postal_code %></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td><%= @user.address %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td><%= @user.telephon_number %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @user.email %></td>
+        </tr>
+      </table>
+      <table>
+      <tr>
+        <th><h3>配送先　</h3></th>
+        <td><%= link_to "一覧を見る",publics_my_page_path(@user.id) %></td>
+      </tr>
+      <tr>
+        <th><h3>注文履歴　</h3></th>
+        <td><%= link_to "一覧を見る",publics_my_page_path(@user.id) %></td>
+      </tr>
+      </table>
+    </div>
+  </div>
+</main>

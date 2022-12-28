@@ -1,0 +1,37 @@
+<main class="container">
+  <div class="row">
+  <div class="mx-auto">
+  <h1 class="bg-light">会員情報編集</h1>
+    <%= form_with model: @user, url: publics_my_page_path  do |f| %>
+    <table>
+    <tr>
+      <th>氏名</th>
+      <td><%= f.text_field :first_name %> <%= f.text_field :last_name %></td>
+    </tr>
+    <tr>
+      <th>ふりがな</th>
+      <td><%= f.text_field :first_name_kana %> <%= f.text_field :last_name_kana %></td>
+    </tr>
+    <tr>
+      <th>郵便番号</th>
+      <td><%= f.text_field :postal_code %></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td><%= f.text_field :address %></td>
+    </tr>
+    <tr>
+      <th>電話番号</th>
+      <td><%= f.text_field :telephon_number %></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td><%= f.text_field :email %></td>
+    </tr>
+  </table>
+  <%= f.submit "変更を保存", class: "btn btn-secondary" %>
+    <% end %>
+  <%= link_to "退会する", publics_users_confirm_path %>
+  </div>
+  </div>
+</main>

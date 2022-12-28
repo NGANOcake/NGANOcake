@@ -17,6 +17,9 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
   　　　　　　<span class="navbar-toggler-icon"></span>
 　　　　　</button>
+　　　　　<% if user_signed_in? %>
+　　　　　<p>ようこそ会員さん！</p>
+　　　　　<% end %>
 　　　　　<div class="navbar-collapse" id="navbarNavDropdown">
  　　　　　　　 <ul class="navbar-nav ml-auto">
   <% if admin_signed_in? %>
@@ -36,16 +39,14 @@
       </li>
   <% elsif user_signed_in? %>
       <li class="nav-link text-light">
-        <%= link_to "商品一覧", admins_items_path %>
+        <%= link_to "マイページ", publics_my_page_path %>
       </li>
       <li class="nav-link text-light">
-        <%= link_to "会員一覧", admins_users_path %>
+        <%= link_to "商品一覧", about_path %>
       </li>
       <li class="nav-link text-light">
-        <%= link_to "注文一覧", admins_orders_path %>
+        <%= link_to "カート", about_path %>
       </li>
-      <li class="nav-link text-light">
-        <%= link_to "ジャンル一覧", about_path %>
       <li class="nav-link text-light">
         <i></i>
         <%= link_to "ユーザーログアウト",  destroy_user_session_path, method: :delete %>
@@ -76,11 +77,13 @@
 
     <%= yield %>
 
-   <footer class="container">
+   <footer class="footer">
+   <div class="container">
     <div class="row align-items-end">
      <div class="mx-auto">
        <p>CopyRight NAGANOCake.inc</p>
      </div>
+    </div>
     </div>
     </footer>
   </body>
