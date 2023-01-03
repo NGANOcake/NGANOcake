@@ -14,7 +14,7 @@ class Publics::UsersController < ApplicationController
     else
       render :show
     end
-  end
+   end
 
   def confirm
     @user = current_user
@@ -22,7 +22,8 @@ class Publics::UsersController < ApplicationController
 
   def withdrawal
     @user = current_user
-    @user.update
+    @user.update(is_deleted: false)
+    reset_session
     redirect_to publics_homes_top_path
   end
 

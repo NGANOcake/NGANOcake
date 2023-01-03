@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get '/users/my_page' => 'users#show', as: 'my_page'
     get 'users/edit'
     get '/users/confirm' => 'users#confirm'
+    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal-user'
   end
   namespace :publics do
     get 'homes/top'
