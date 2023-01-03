@@ -14,7 +14,7 @@ class Publics::UsersController < ApplicationController
     else
       render :show
     end
-  end
+   end
 
   def confirm
     @user = current_user
