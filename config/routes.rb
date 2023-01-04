@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   namespace :publics do
-    get 'items/index'
-    get 'items/show'
+    resources :items, :only => [:index, :show]
   end
   namespace :publics do
     get '/users/my_page' => 'users#show', as: 'my_page'
