@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   namespace :publics do
+    get 'cart_items/index'
+  end
+  namespace :publics do
     resources :items, :only => [:index, :show]
   end
   namespace :publics do
