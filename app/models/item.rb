@@ -12,4 +12,8 @@ class Item < ApplicationRecord
       'no_image.jpg'
     end
   end
+
+  def taxin_price
+    price * 1.1
+  end
 end
