@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   namespace :publics do
+    resources :orders, :only => [:new, :index, :show, :create] do
+      collection do
+        post 'confirm'
+        get 'thanks'
+      end
+    end
+  end
+  namespace :publics do
     resources :cart_items, :only => [:index, :update, :destroy, :create] do
      collection do
     delete 'destroy_all'

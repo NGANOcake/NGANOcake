@@ -23,6 +23,15 @@ class Publics::CartItemsController < ApplicationController
   end
 
   def create
+    @cart_item = CartItem.new(cart_item_params)
+    @cart_item.user_id =current_user.id
+    if @cart_item.save
+      redirect_to cart_items_path
+    else
+      session[:cart_item] = @cart_item.attributes.slice(*cart_item_params.keys)
+      @item = Item.find_by(id:@cart_item.item_id)
+      redirect_to publics_items_path
+    end
   end
 
   private

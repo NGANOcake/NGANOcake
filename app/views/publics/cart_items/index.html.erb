@@ -13,7 +13,13 @@
         <tr class="border">
           <td class="border"><%= image_tag cart_item.get_image %><%= cart_item.item_id.name %></td>
           <td class="border"><%= cart_item.item_id.taixin_price %></td>
-          <td class="border"><%= f.select :amount, CartItem.amount { |cart_item| [1..10]}  %></td>
+          <td class="border">
+            <%= form_for @cart_item do |f| %>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.select :amount, CartItem.amount { |cart_item| [1..10]}, inculude_blank: "個数選択" %>
+            <%= f.submit "変更" %>
+            <% end %>
+          </td>
           <td class="border"><%= cart_item.taixin_price * cart_item.amount %></td>
           <td class="border"><%= link_to "削除する",  publics_cart_items_index_path, controller: 'cart_items', action: 'destroy', method: :delete, class: "btn btn-secondary" %></td>
         </tr>
@@ -26,7 +32,7 @@
         <th class="border">合計金額</th><td class="border">￥<%= @total.round.to_s(:delimited) %></td>
       </tr>
       </table>
-      <%= link_to "情報入力に進む", publics_cart_items_path %>
+      <%= link_to "情報入力に進む", publics_order_path(current_user.id) %>
     </div>
   </div>
 </main>
