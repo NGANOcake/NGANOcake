@@ -16,17 +16,18 @@
               <table class="col-md-2">
              <tr><td><%= @item.introduction %></td></tr>
              <tr><td>￥<%= @item.price %>(税込)</td></tr>
-             <% if user_signed_in? %>
-             <%= form_for @cart_item do |f| %>
              <tr><td>
-             <%= f.hidden_field :item_id, value: @item.id %>
-             <%= f.select :amount, CartItem.amount { |cart_item| [1..10]}, inculude_blank: "個数選択" %>
+             <% if user_signed_in? %>
+             <%= form_with(model: @cart_item, url: publics_cart_items_path, method: :post, local: true)do |f| %>
+             <%= f.label :amount, "個数変更" %>
+             <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10] %>
+             <%= f.hidden_field :item_id, :value => @item.id %>
+             <%= f.submit "カートに入れる" %>
+             <% end %>
+             <% end %>
              </td></tr>
-             <tr><td><%= f.submit "カートに入れる" %></td></tr>
-             <% end %>
-             <% end %>
             </table>
-            </div>
+          </div>
           </div>
         </div>
   </div>

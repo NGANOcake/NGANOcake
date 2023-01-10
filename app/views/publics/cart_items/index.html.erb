@@ -9,27 +9,30 @@
       <div class="row">
       <table width="100%", class="mx-auto border">
         <tr class="bg-light border"><th>商品名</th><th>単価(税込)</th><th>数量</th><th>小計</th><th></th></tr>
+        <% total = 0 %>
+        <% if current_user.cart_items.present? %>
         <% @cart_items.each do |cart_item| %>
         <tr class="border">
-          <td class="border"><%= image_tag cart_item.get_image %><%= cart_item.item_id.name %></td>
-          <td class="border"><%= cart_item.item_id.taixin_price %></td>
+          <td class="border"><%= image_tag cart_item.get_image %><%= cart_item.item.name %></td>
+          <td class="border"><%= cart_item.item.taxin_price %></td>
           <td class="border">
-            <%= form_for @cart_item do |f| %>
-            <%= f.hidden_field :item_id, value: @item.id %>
-            <%= f.select :amount, CartItem.amount { |cart_item| [1..10]}, inculude_blank: "個数選択" %>
-            <%= f.submit "変更" %>
+            <%= form_with model: cart_item, url: publics_cart_item_path(cart_item), local: true, method: :patch do |f| %>
+            <%= f.number_field :amount, min: 1, max: 10, id: "amount_cart" %>
+            <%= f.submit "変更", class: "btn btn-success" %>
             <% end %>
           </td>
-          <td class="border"><%= cart_item.taixin_price * cart_item.amount %></td>
-          <td class="border"><%= link_to "削除する",  publics_cart_items_index_path, controller: 'cart_items', action: 'destroy', method: :delete, class: "btn btn-secondary" %></td>
+          <td class="border"><% subtotal = cart_item.taxin_price * cart_item.amount %><%= subtotal %></td>
+          <td class="border"><%= link_to "削除する",  publics_cart_items_path, controller: 'cart_items', action: 'destroy', method: :delete, class: "btn btn-secondary" %></td>
         </tr>
+        <% total += subtotal %>
+        <% end %>
         <% end %>
       <tr>
         <td class="border"><%= link_to "買い物を続ける", publics_items_path %></td>
         <td></td>
         <td></td>
         <td></td>
-        <th class="border">合計金額</th><td class="border">￥<%= @total.round.to_s(:delimited) %></td>
+        <th class="border">合計金額</th><td class="border">￥<%= total %></td>
       </tr>
       </table>
       <%= link_to "情報入力に進む", publics_order_path(current_user.id) %>

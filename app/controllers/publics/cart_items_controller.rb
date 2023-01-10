@@ -1,4 +1,6 @@
 class Publics::CartItemsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @cart_items = current_user.cart_items.all
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
@@ -23,14 +25,17 @@ class Publics::CartItemsController < ApplicationController
   end
 
   def create
-    @cart_item = CartItem.new(cart_item_params)
-    @cart_item.user_id =current_user.id
-    if @cart_item.save
-      redirect_to cart_items_path
+    @cart_item = current_user.cart_items.new(cart_item_params)
+    if current_user.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
+      cart_item = current_user.cart_items.find_by(item_id: params[:cart_item][:item_id])
+      cart_item.amount += params[:cart_item][:amount].to_i
+      cart_item.save
+      redirect_to publics_cart_items_path
+    elsif @cart_item.save
+      @cart_items = current_user.cart_items.all
+      render :index
     else
-      session[:cart_item] = @cart_item.attributes.slice(*cart_item_params.keys)
-      @item = Item.find_by(id:@cart_item.item_id)
-      redirect_to publics_items_path
+      render :index
     end
   end
 

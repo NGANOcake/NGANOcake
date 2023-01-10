@@ -15,8 +15,13 @@ Rails.application.routes.draw do
     end
   end
   namespace :publics do
-    resources :items, :only => [:index, :show]
+    resources :items, :only => [:index, :show] do
+      scope module: :items do
+        resources :add_to_carts, only: [:create]
+        resources :delete_in_carts, only: [:create]
+    end
   end
+end
   namespace :publics do
     get '/users/my_page' => 'users#show', as: 'my_page'
     get 'users/edit'

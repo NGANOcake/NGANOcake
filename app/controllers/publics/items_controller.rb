@@ -1,16 +1,17 @@
 class Publics::ItemsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @items = Item.page(params[:page])
   end
 
   def show
    @item = Item.find(params[:id])
-   @cart_item = CartItem.new(cart_item_params)
-   @item = Item.find_by(id:@cart_item.item_id)
+   @cart_item = CartItem
   end
 
   private
-  def cart_item_params
-    params.require(:cart_item).permit(:amount, :item_id)
+  def item_params
+    params.require(:item).permit(:name,:introduction,:price,:image_id)
   end
 end
