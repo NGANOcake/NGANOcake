@@ -1,0 +1,18 @@
+<% total = 0 %>
+<%= @cart_items.each do |cart| %>
+<%= cart.item.name %>
+<%= cart.item.taxin_price %>
+<%= cart.amount %>
+<% subtotal = cart_item.taxin_price * cart_item.amount %>
+<%= subtotal %>
+<% total += subtotal %>
+<% end %>
+
+<div>800</div>
+<%= total %>
+<%= total + 800 %>
+
+<h2>支払い方法</h2>
+<%= @order.payment_method %>
+<h2>お届け先</h2>
+<%= @order.address %>
