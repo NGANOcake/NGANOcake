@@ -11,7 +11,7 @@ class Publics::OrdersController < ApplicationController
       @order.address = current_user.address
     elsif params[:select_address] == "2"
       address_new = current_user.addresses.new(address_params)
-      if address_new.save ##修正必要
+      if address_new.save ##修正必要?
       else
         render :new
       end
@@ -27,14 +27,14 @@ class Publics::OrdersController < ApplicationController
 
   def create
     cart_items = current_user.cart_items.all
-    @order = current_user.orders.new(order_params)
+    @order = current_user.orders.new(create_params)
     if @order.save
-      cart_items.each do |cart_item|
+      cart_items.each do |cart|
         order_detail = OrderDetail.new
-        order_detail.item_id = cart_item.item_id
+        order_detail.item_id = cart.item_id
         order_detail.order_id = @order.id
-        order_detail.amount = cart_item.amount
-        order_detail.price = cart_item.item.price
+        order_detail.amount = cart.amount
+        order_detail.price = cart.item.price
         order_detail.save
       end
       redirect_to  thanks_publics_orders_path
@@ -47,17 +47,23 @@ class Publics::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_user.orders.all
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
 private
   def order_params
-    params.permit(:name, :address, :postal_code, :payment_method)
+    params.permit(:payment_method, :postal_code, :address, :name)
+  end
+
+  def create_params
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :total_payment)
   end
 
   def address_params
-    params.require(:order).permit(:name,:address)
+    params.require(:order).permit(:name, :postal_code, :address, :payment_method)
   end
 end

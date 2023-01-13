@@ -1,2 +1,69 @@
-<h1>Publics::Orders#show</h1>
-<p>Find me in app/views/publics/orders/show.html.erb</p>
+<main class="cantianer">
+<h1>注文情報確認</h1>
+<div class="row">
+<% total =0 %>
+<div class="col-md-5 offset-md-1">
+<h3>注文情報</h3>
+<table class="border">
+<tr>
+  <th>注文日</th>
+  <td><%= @order.created_at %></td>
+</tr>
+<tr>
+  <th>配送先</th>
+  <td><%= @order.address_display %></td>
+</tr>
+<tr>
+  <th>支払方法</th>
+  <td><%= @order.payment_method %></td>
+</tr>
+<tr>
+  <th>ステータス</th>
+  <td>入金確認</td>
+</tr>
+</table>
+</div>
+
+<div class="col-md-3 offset-md-1">
+<table class="border">
+<tr>
+    <th>商品合計</th>
+    <td><%= @order.total_payment %></td>
+</tr>
+<tr>
+  <th>送料</th>
+  <td>800</td>
+</tr>
+<tr>
+    <th>請求金額</th>
+    <td><%= @order.total_payment + 800 %></td>
+</tr>
+</table>
+</div>
+
+<div class="col-md-2"></div>
+</div>
+
+<div class="contianer">
+<div class="row">
+  <h2>注文内容</h2>
+<table class="col-md-5 offset-md-1">
+<tr>
+<th>商品</th>
+<th>単価(税込)</th>
+<th>個数</th>
+<th>小計</th>
+</tr>
+<% @order.each do |order| %>
+<tr>
+<td><%= order.item.name %></td>
+<td><%= order.item.taxin_price %></td>
+<td><%= order.amount %></td>
+<% subtotal = order.item.taxin_price*order.amount %>
+<td><%= subtotal %></td>
+</tr>
+<% end %>
+</table>
+</div>
+</div>
+</main>
