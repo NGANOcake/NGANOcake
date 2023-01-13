@@ -29,12 +29,12 @@ class Publics::OrdersController < ApplicationController
     cart_items = current_user.cart_items.all
     @order = current_user.orders.new(order_params)
     if @order.save
-      cart_items.each do |cart_items|
-        order_detail = OrderDtail.new
-        order_detail.item_id = cart.item_id
+      cart_items.each do |cart_item|
+        order_detail = OrderDetail.new
+        order_detail.item_id = cart_item.item_id
         order_detail.order_id = @order.id
-        order_detail.amount = cart.amount
-        order_detail.price = cart.item.price
+        order_detail.amount = cart_item.amount
+        order_detail.price = cart_item.item.price
         order_detail.save
       end
       redirect_to  thanks_publics_orders_path
