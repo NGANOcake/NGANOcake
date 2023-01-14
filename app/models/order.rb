@@ -7,4 +7,8 @@ class Order < ApplicationRecord
    def address_display
     '〒'+postal_code+' '+address
    end
+
+    def taxin_price
+    price * 1.1
+    end
 end

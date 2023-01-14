@@ -3,8 +3,8 @@
   <div class="row">
     <div width="100%", class="mx-auto">
       <h1>注文履歴一覧</h1>
-      <table>
-        <tr>
+      <table class="border">
+        <tr class="border">
           <th>注文日</th>
           <th>配送先</th>
           <th>注文商品</th>
@@ -12,14 +12,14 @@
           <th>ステータス</th>
           <th>注文詳細</th>
         </tr>
-        <% @orders.each do |order| %>
-        <tr>
-          <td><%= order.created_at %></td>
-          <td>〒<%= order.postal_code %><%= order.address %><%= order.name %></td>
-          <td><%= order.order_details.name %></td>
-          <td><%= order.total_payment %></td>
+        <% @order_details.each do |order_detail| %>
+        <tr class="border">
+          <td><%= order_detail.order.created_at.strftime('%y/%m/%d') %></td>
+          <td class="border">〒<%= order_detail.order.postal_code %><%= order_detail.order.address %><%= order_detail.order.name %></td>
+          <td><%= order_detail.item.name %></td>
+          <td class="border"><%= order_detail.order.total_payment %></td>
           <td>入金確認</td>
-          <td><%= link_to "表示する",publics_order_path(order.id) %></td>
+          <td><%= link_to "表示する", publics_order_path(order_detail.id), class: "btn btn-secondary" %></td>
         </tr>
         <% end %>
       </table>
