@@ -47,12 +47,12 @@ class Publics::OrdersController < ApplicationController
   end
 
   def index
-    @order_details = OrderDetail.all
+    @orders = current_user.orders
   end
 
   def show
-    @order_detail = OrderDetail.find(params[:id])
-    @order_details = @order_detail.item
+   @order = Order.find(params[:id])
+   @order_details = @order.order_details
   end
 
 private

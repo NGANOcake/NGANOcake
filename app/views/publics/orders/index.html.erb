@@ -12,14 +12,18 @@
           <th>ステータス</th>
           <th>注文詳細</th>
         </tr>
-        <% @order_details.each do |order_detail| %>
+        <% @orders.each do |order| %>
         <tr class="border">
-          <td><%= order_detail.order.created_at.strftime('%y/%m/%d') %></td>
-          <td class="border">〒<%= order_detail.order.postal_code %><%= order_detail.order.address %><%= order_detail.order.name %></td>
-          <td><%= order_detail.item.name %></td>
-          <td class="border"><%= order_detail.order.total_payment %></td>
+          <td><%= order.created_at.strftime('%y/%m/%d') %></td>
+          <td class="border">〒<%= order.postal_code %><%= order.address %><%= order.name %></td>
+          <td>
+          <% order.order_details.each do |order_detail| %>
+          <%= order_detail.item.name %><br>
+          <% end %>
+          </td>
+          <td class="border"><%= order.total_payment %></td>
           <td>入金確認</td>
-          <td><%= link_to "表示する", publics_order_path(order_detail.id), class: "btn btn-secondary" %></td>
+          <td><%= link_to "表示する", publics_order_path(order.id), class: "btn btn-secondary" %></td>
         </tr>
         <% end %>
       </table>

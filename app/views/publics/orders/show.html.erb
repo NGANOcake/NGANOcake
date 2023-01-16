@@ -7,15 +7,15 @@
 <table class="border">
 <tr>
   <th>注文日</th>
-  <td><%= @order_detail.order.created_at.strftime('%y/%m/%d') %></td>
+  <td><%= @order.created_at.strftime('%y/%m/%d') %></td>
 </tr>
 <tr>
   <th>配送先</th>
-  <td><%= @order_detail.order.address_display %></td>
+  <td><%= @order.address_display %></td>
 </tr>
 <tr>
   <th>支払方法</th>
-  <td><%= @order_detail.order.payment_method %></td>
+  <td><%= @order.payment_method %></td>
 </tr>
 <tr>
   <th>ステータス</th>
@@ -25,10 +25,11 @@
 </div>
 
 <div class="col-md-3 offset-md-1">
+  <h3>請求情報</h3>
 <table class="border">
 <tr>
     <th>商品合計</th>
-    <td><%= @order_detail.order.total_payment %></td>
+    <td><%= @order.total_payment %></td>
 </tr>
 <tr>
   <th>送料</th>
@@ -36,7 +37,7 @@
 </tr>
 <tr>
     <th>請求金額</th>
-    <td><%= @order_detail.order.total_payment + 800 %></td>
+    <td><%= @order.total_payment + 800 %></td>
 </tr>
 </table>
 </div>
@@ -46,8 +47,9 @@
 
 <div class="contianer">
 <div class="row">
+<div class="col-md-5 offset-md-1">
   <h2>注文内容</h2>
-<table class="col-md-5 offset-md-1">
+<table class="border">
 <tr>
 <th>商品</th>
 <th>単価(税込)</th>
@@ -55,15 +57,18 @@
 <th>小計</th>
 </tr>
 <% total = 0 %>
+<% @order_details.each do |order_detail| %>
 <tr>
-<td><%= @order_detail.item.name %></td>
-<td><%= @order_detail.item.taxin_price %></td>
-<td><%= @order_detail.amount %></td>
-<% subtotal = @order_detail.taxin_price * @order_detail.amount %>
+<td><%= order_detail.item.name %></td>
+<td><%= order_detail.item.taxin_price %></td>
+<td><%= order_detail.amount %></td>
+<% subtotal = order_detail.taxin_price * order_detail.amount %>
 <td><%= subtotal %></td>
 <% total += subtotal %>
 </tr>
+<% end %>
 </table>
+</div>
 </div>
 </div>
 </main>
