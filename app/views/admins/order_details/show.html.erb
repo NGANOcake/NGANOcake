@@ -34,12 +34,12 @@
       <th>小計</th>
       <th>制作ステータス</th>
     </tr>
-    <% @cart_items.each do |order| %>
+    <% @order_details.each do |order_detail| %>
     <tr>
-      <td><%= cart_item.item.name %></td>
-      <td><%= cart_item.item.price %></td>
-      <td><%= cart_item.amount %></td>
-      <td><%= cart_item.total_payment %></td>
+      <td><%= order_detail.item.name %></td>
+      <td><%= order_detail.item.price*1.1 %></td>
+      <td><%= order_detail.amount %></td>
+      <td><%= order_detail.order.total_payment %></td>
       <td>ステータス</td>
     </tr>
     <% end %>
@@ -47,15 +47,15 @@
   <table class="col-md-5">
     <tr>
       <th>商品合計</th>
-      <td>合計</td>
+      <td><%= @order.total_payment %></td>
     </tr>
     <tr>
       <th>送料</th>
-      <td><%= @order.shipping_cost %></td>
+      <td>800</td>
     </tr>
     <tr>
       <th>請求金額合計</th>
-      <th><%= @order.order.total_payment %></th>
+      <th><%= @order.total_payment+800 %></th>
     </tr>
   </table>
   </div>
