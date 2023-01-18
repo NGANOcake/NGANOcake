@@ -30,7 +30,11 @@ class Publics::SessionsController < Devise::SessionsController
   def user_state
     @user = User.find_by(email: params[:user][:email])
     return if !@user
-    if @user.valid_password?(params[:user][:password])
+    if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false))
+      flash[:error] = "退会済みです"
+      redirect_to  new_user_registration_path
+    else
+      flash[:error] = "入力してください"
     end
   end
 end
