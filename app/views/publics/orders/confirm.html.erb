@@ -3,12 +3,12 @@
 <div class="row">
 <table class="col-md-5 offset-md-1 border">
 <% total = 0 %>
-<tr><th>用品名</th><th>単価(税込)</th><th>数量</th><th>小計</th></tr>
+<tr><th>用品名</th><th class="border">単価(税込)</th><th>数量</th><th class="border">小計</th></tr>
 <% @cart_items.each do |cart_item| %>
 <tr>
-<td><%= cart_item.item.name %></td>
+<td class="border"><%= cart_item.item.name %></td>
 <td><%= cart_item.item.taxin_price %></td>
-<td><%= cart_item.amount %></td>
+<td class="border"><%= cart_item.amount %></td>
 <% subtotal = cart_item.taxin_price * cart_item.amount %>
 <td><%= subtotal %></td>
 <% total += subtotal %>
@@ -17,15 +17,15 @@
 </table>
 <table class="col-md-3 offset-md-1 border">
 <tr>
-    <th>送料</th>
+    <th class="border">送料</th>
     <td>800</td>
 </tr>
 <tr>
     <th>商品合計</th>
-    <td><%= total %></td>
+    <td class="border"><%= total %></td>
 </tr>
 <tr>
-    <th>請求金額</th>
+    <th class="border">請求金額</th>
     <td><%= total + 800 %></td>
 </tr>
 </table>
@@ -35,14 +35,10 @@
 <div class="contianer">
 <div class="row">
 <table class="col-md-5 offset-md-1">
-<tr>
-<th>支払い方法</th>
-<td><%= @order.payment_method %></td>
-</tr>
-<tr>
-<th>お届け先</th>
-<td><%= @order.address_display %><%= @order.name %></td>
-</tr>
+<tr><th>支払い方法</th></tr>
+<tr><td><%= @order.payment_method_i18n %></td></tr>
+<tr><th>お届け先</th></tr>
+<tr><td><%= @order.address_display %><%= @order.name %></td></tr>
 </table>
 <%= form_with model: @order, url: publics_orders_path do |f| %>
 <%= f.hidden_field :name %>

@@ -1,27 +1,31 @@
 <main class="contianer">
   <h1>注文情報入力</h1>
+  <%= flash[:error] %>
   <div class="row">
-    <div class="mx-auto">
+    <div class="col-md-4 offset-md-2">
       <h2>支払方法</h2>
       <%= form_with model: @orders, url: confirm_publics_orders_path, method: :get, local: true do |f| %>
       <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
-      <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
+      <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %><br>
       <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
-      <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer] %>
+      <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer] %><br>
+    </div>
+    <div class="col-md-4">
       <h2>お届け先</h2>
       <%= f.radio_button :select_address, 1 %>
       <%= f.label :select_address_1, "ご自身の住所" %>
-      <%= current_user.postal_code %><%= current_user.address %><%= current_user.first_name %><%= current_user.last_name %>
+      〒<%= current_user.postal_code %><%= current_user.address %> <%= current_user.first_name %><%= current_user.last_name %><br>
 
       <%= f.radio_button :select_address, 2 %>
-      <%= f.label :select_address_2, "新しい届け先" %>
-      <%= f.label :postal_code, "郵便番号" %>
-      <%= f.text_field :postal_code %>
-      <%= f.label :address, "住所" %>
-      <%= f.text_field :address %>
-      <%= f.label :name, "宛名" %>
-      <%= f.text_field :name %>
-      <%= f.submit "確認画面に進む" %>
+      <%= f.label :select_address_2, "新しい届け先" %><br>
+      <%= f.label :postal_code, "郵便番号" %><br>
+      <%= f.text_field :postal_code %><br>
+      <%= f.label :address, "住所" %><br>
+      <%= f.text_field :address %><br>
+      <%= f.label :name, "宛名" %><br>
+      <%= f.text_field :name %><br>
+
+      <%= f.submit "確認画面に進む" %><br<
       <% end %>
     </div>
   </div>

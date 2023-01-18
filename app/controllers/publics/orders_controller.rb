@@ -10,13 +10,9 @@ class Publics::OrdersController < ApplicationController
       @order.name = current_user.first_name + current_user.last_name
       @order.address = current_user.address
     elsif params[:select_address] == "2"
-      address_new = current_user.addresses.new(address_params)
-      if address_new.save ##修正必要?
-      else
-        render :new
-      end
     else
-      redirect_to publics_items_path
+      flash[:error] = "カートが空です"
+      render :new
     end
     @cart_items = current_user.cart_items.all
     @total = @cart_items.inject(0){ |sum, item| sum + item.sum_price }

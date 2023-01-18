@@ -18,10 +18,10 @@
   　　　　　　<span class="navbar-toggler-icon"></span>
 　　　　　</button>
 　　　　　<% if user_signed_in? %>
-　　　　　<p>ようこそ会員さん！</p>
+　　　　　<p class="text-light">ようこそ<%= current_user.first_name %><%= current_user.last_name %>さん！</p>
 　　　　　<% end %>
 　　　　　<div class="navbar-collapse" id="navbarNavDropdown">
- 　　　　　　　 <ul class="navbar-nav ml-auto">
+ 　　　　　　　 <ul class="navbar-nav md-auto">
   <% if admin_signed_in? %>
       <li class="nav-link -light">
         <%= link_to "商品一覧", admins_items_path %>
