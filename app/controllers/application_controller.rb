@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
     if resource.is_a?(Admin)
       admins_orders_path
     else
-      publics_my_page_path
+       my_page_publics_users_path
     end
   end
 

@@ -1,6 +1,4 @@
 class Publics::ItemsController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     @items = Item.page(params[:page])
   end

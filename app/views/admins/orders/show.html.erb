@@ -12,11 +12,11 @@
 <% @orders.each do |order| %>
 <td><%= link_to order.created_at.strftime(' %Y/%m/%d '),  admins_order_detail_path(order.id) %></td>
 <td>
-  <% amount_sum = [] %>
+  <% amount_sum = 0 %>
   <% order.order_details do |order_detail| %>
-  <% amount_sum << order_detail.amount %>
+  <% amount_sum += order_detail.amount %>
   <% end %>
-  <%= amount_sum.sum %>
+  <%= amount_sum %>
 </td>
 <td>ステータス</td>
 </tr>

@@ -2,7 +2,7 @@
   <div class="row">
   <div class="mx-auto">
   <h1 class="bg-light">会員情報編集</h1>
-    <%= form_with model: @user, url: publics_my_page_path  do |f| %>
+    <%= form_with model: @user, url: publics_user_path(@user.id)  do |f| %>
     <table>
     <tr>
       <th>氏名</th>
@@ -22,7 +22,7 @@
     </tr>
     <tr>
       <th>電話番号</th>
-      <td><%= f.text_field :telephon_number %></td>
+      <td><%= f.text_field :telephone_number %></td>
     </tr>
     <tr>
       <th>メールアドレス</th>
@@ -31,7 +31,7 @@
   </table>
   <%= f.submit "変更を保存", class: "btn btn-secondary" %>
     <% end %>
-  <%= link_to "退会する", publics_users_confirm_path %>
+  <%= link_to "退会する", confirm_publics_users_path %>
   </div>
   </div>
 </main>

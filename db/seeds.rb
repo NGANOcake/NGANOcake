@@ -21,4 +21,5 @@ User.create!(
    postal_code: 'aaaaaaaaaaa',
    address: 'aaaaaaaaaa',
    telephone_number: '00000000000',
+   is_deleted: false
    )

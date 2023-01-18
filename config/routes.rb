@@ -23,10 +23,14 @@ Rails.application.routes.draw do
   end
 end
   namespace :publics do
-    get '/users/my_page' => 'users#show', as: 'my_page'
-    get 'users/edit'
-    get '/users/confirm' => 'users#confirm'
+    resources :users, :only => [:edit, :update] do
+    collection do
+    get '/my_page' => 'users#show', as: 'my_page'
+    get 'confirm'
+    patch 'withdrawal'
   end
+  end
+end
   namespace :publics do
     get 'homes/top'
     get 'homes/about'

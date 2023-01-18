@@ -2,7 +2,7 @@
   <div class="row">
     <div class="mx-auto">
       <h1>マイページ</h1>
-      <h3>登録情報　<%= link_to "編集する", publics_users_edit_path %></h3>
+      <h3>登録情報　<%= link_to "編集する", edit_publics_user_path(@user.id) %></h3>
       <table>
         <tr>
           <th>氏名</th>
@@ -22,7 +22,7 @@
         </tr>
         <tr>
           <th>電話番号</th>
-          <td><%= @user.telephon_number %></td>
+          <td><%= @user.telephone_number %></td>
         </tr>
         <tr>
           <th>メールアドレス</th>
@@ -32,7 +32,7 @@
       <table>
       <tr>
         <th><h3>配送先　</h3></th>
-        <td><%= link_to "一覧を見る",publics_my_page_path(@user.id) %></td>
+        <td>一覧を見る</td>
       </tr>
       <tr>
         <th><h3>注文履歴　</h3></th>
