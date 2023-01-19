@@ -28,34 +28,34 @@
   <div class="row">
   <table class="col-md-7">
     <tr class="bg-light">
-      <th>商品名</th>
-      <th>単価（税込）</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th>制作ステータス</th>
+      <th class="border">商品名</th>
+      <th class="border">単価（税込）</th>
+      <th class="border">数量</th>
+      <th class="border">小計</th>
+      <th class="border">制作ステータス</th>
     </tr>
     <% @order_details.each do |order_detail| %>
     <tr>
-      <td><%= order_detail.item.name %></td>
-      <td><%= order_detail.item.price*1.1 %></td>
-      <td><%= order_detail.amount %></td>
-      <td><%= order_detail.order.total_payment %></td>
-      <td>ステータス</td>
+      <td class="border"><%= order_detail.item.name %></td>
+      <td class="border"><%= taxin_price = (order_detail.item.price*1.1).floor(0) %></td>
+      <td class="border"><%= order_detail.amount %></td>
+      <td class="border"><%= taxin_price*order_detail.amount %></td>
+      <td class="border">ステータス</td>
     </tr>
     <% end %>
   </table>
   <table class="col-md-5">
     <tr>
-      <th>商品合計</th>
-      <td><%= @order.total_payment %></td>
+      <th class="border bg-light">商品合計</th>
+      <td class="border"><%= @order.total_payment %></td>
     </tr>
     <tr>
-      <th>送料</th>
-      <td>800</td>
+      <th class="border bg-light">送料</th>
+      <td class="border">800</td>
     </tr>
     <tr>
-      <th>請求金額合計</th>
-      <th><%= @order.total_payment+800 %></th>
+      <th class="border bg-light">請求金額合計</th>
+      <th class="border"><%= @order.total_payment+800 %></th>
     </tr>
   </table>
   </div>

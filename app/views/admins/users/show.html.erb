@@ -33,7 +33,7 @@
     </tr>
     <tr>
       <th>会員ステータス</th>
-      <td>ステータス</td>
+      <td><%= @user.is_deleted %></td>
     </tr>
   </table>
   <div class="btn btn-dark"><%= link_to "編集する", edit_admins_user_path(@user.id) %></div>

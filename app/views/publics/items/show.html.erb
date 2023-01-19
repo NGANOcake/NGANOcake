@@ -15,7 +15,7 @@
           <div class="row">
               <table class="col-md-2">
              <tr><td><%= @item.introduction %></td></tr>
-             <tr><td>￥<%= @item.price %>(税込)</td></tr>
+             <tr><td>￥<%= (@item.price*1.1).floor(0) %>(税込)</td></tr>
              <tr><td>
              <% if user_signed_in? %>
              <%= form_with(model: @cart_item, url: publics_cart_items_path, method: :post, local: true)do |f| %>

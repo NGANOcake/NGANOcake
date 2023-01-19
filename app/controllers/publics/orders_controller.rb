@@ -11,7 +11,6 @@ class Publics::OrdersController < ApplicationController
       @order.address = current_user.address
     elsif params[:select_address] == "2"
     else
-      flash[:error] = "カートが空です"
       render :new
     end
     @cart_items = current_user.cart_items.all
