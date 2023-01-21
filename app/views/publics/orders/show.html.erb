@@ -2,7 +2,7 @@
 <h1>注文情報確認</h1>
 <div class="row">
 <% total =0 %>
-<div class="col-md-5 offset-md-1">
+<div class="col-md-5 offset-md-2">
 <h3>注文情報</h3>
 <table class="border">
 <tr>
@@ -24,7 +24,7 @@
 </table>
 </div>
 
-<div class="col-md-3 offset-md-1">
+<div class="col-md-3">
   <h3>請求情報</h3>
 <table class="border">
 <tr>
@@ -47,7 +47,7 @@
 
 <div class="contianer">
 <div class="row">
-<div class="col-md-5 offset-md-1">
+<div class="col-md-5 offset-md-2">
   <h2>注文内容</h2>
 <table class="border">
 <tr>
@@ -60,10 +60,10 @@
 <% @order_details.each do |order_detail| %>
 <tr>
 <td><%= order_detail.item.name %></td>
-<td><%= order_detail.item.taxin_price %></td>
+<td><%= order_detail.item.taxin_price.floor(0) %></td>
 <td><%= order_detail.amount %></td>
 <% subtotal = order_detail.taxin_price * order_detail.amount %>
-<td><%= subtotal %></td>
+<td><%= subtotal.floor(0) %></td>
 <% total += subtotal %>
 </tr>
 <% end %>

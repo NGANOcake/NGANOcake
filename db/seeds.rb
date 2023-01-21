@@ -11,15 +11,3 @@ Admin.create!(
    password: 'aaaaaa',
 )
 
-User.create!(
-   last_name: '太郎',
-   first_name: 'テスト',
-   last_name_kana: 'たろう',
-   first_name_kana: 'てすと',
-   email: 'aaa@aaa.com',
-   encrypted_password:'aaaaaa',
-   postal_code: 'aaaaaaaaaaa',
-   address: 'aaaaaaaaaa',
-   telephone_number: '00000000000',
-   is_deleted: false
-   )

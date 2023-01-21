@@ -1,6 +1,6 @@
 <main class="container">
   <div class="row">
-  <div class="mx-auto">
+  <div width="90%", class="mx-auto">
   <h1 class="bg-light"><%= @user.first_name %>さんの会員詳細</h1>
   <table>
     <tr class="bg-light">
@@ -33,7 +33,12 @@
     </tr>
     <tr>
       <th>会員ステータス</th>
-      <td><%= @user.is_deleted %></td>
+      <% if @user.is_deleted == true %>
+      <td>退会済み</td>
+      <% end %>
+      <% if @user.is_deleted == false %>
+      <td>入会中</td>
+      <% end %>
     </tr>
   </table>
   <div class="btn btn-dark"><%= link_to "編集する", edit_admins_user_path(@user.id) %></div>

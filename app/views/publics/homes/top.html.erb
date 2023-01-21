@@ -24,7 +24,7 @@
         <div class="col-md-4"></div>
         <% @items.each do |item| %>
         <table class="col-md-2">
-        <tr><th><%= image_tag item.get_image %></th></tr>
+        <tr><th><%= image_tag item.get_image, size: "150x100" %></th></tr>
         <tr><td><%= item.name %></td></tr>
         <tr><td><%= item.price %></td></tr>
         </table>

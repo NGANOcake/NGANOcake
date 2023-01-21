@@ -14,7 +14,12 @@
   <td><%= user.id %></td>
   <td><%= link_to user.first_name, admins_user_path(user.id) %></td>
   <td><%= user.email %></td>
-  <td><%= user.is_deleted %></td>
+  <% if user.is_deleted == true %>
+    <td>退会済み</td>
+  <% end %>
+  <% if user.is_deleted == false %>
+    <td>入会中</td>
+  <% end %>
 </tr>
 <% end %>
 </table>

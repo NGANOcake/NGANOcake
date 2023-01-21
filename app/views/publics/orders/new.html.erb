@@ -1,7 +1,7 @@
 <main class="contianer">
   <h1>注文情報入力</h1>
   <div class="row">
-    <div class="mx-auto">
+    <div width="90%", class="mx-auto">
       <h2>支払方法</h2>
       <%= form_with model: @orders, url: confirm_publics_orders_path, method: :get, local: true do |f| %>
       <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
